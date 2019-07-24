@@ -1,12 +1,17 @@
 package com.a.omc.handler;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.a.omc.pojo.Login;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
+@Component
 public class NFVClientHandler extends ChannelInboundHandlerAdapter {
+	
 	
 	//当客户端和服务端 TCP 链路建立成功之后，Netty 的 NIO 线程会调用 channelActive 方法
 	@Override
@@ -16,7 +21,6 @@ public class NFVClientHandler extends ChannelInboundHandlerAdapter {
 		login.setPassword("123");
 		login.setType("msg");
 		ctx.writeAndFlush(login);
-		System.out.println(login);
 	}
 
 	//当服务端返回应答消息时，channelRead 方法被调用，从 Netty 的 ByteBuf 中读取并打印应答消息
