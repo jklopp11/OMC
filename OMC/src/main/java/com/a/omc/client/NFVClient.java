@@ -18,7 +18,7 @@ import io.netty.handler.codec.serialization.ObjectEncoder;
 @Component
 public class NFVClient {
 	public static void main(String[] args) throws Exception {
-		new NFVClient().connect("localhost",7777);
+		new NFVClient().connect("localhost",8960);
 	}
 
 	public void connect(String host,int port) throws Exception {

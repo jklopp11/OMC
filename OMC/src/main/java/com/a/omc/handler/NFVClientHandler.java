@@ -1,14 +1,12 @@
 package com.a.omc.handler;
 
 import com.a.omc.pojo.Login;
-import com.sun.istack.internal.logging.Logger;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 public class NFVClientHandler extends ChannelInboundHandlerAdapter {
-private static final Logger logger = Logger.getLogger( NFVClientHandler.class);
 	
 	//当客户端和服务端 TCP 链路建立成功之后，Netty 的 NIO 线程会调用 channelActive 方法
 	@Override
@@ -35,7 +33,7 @@ private static final Logger logger = Logger.getLogger( NFVClientHandler.class);
 	//当发生异常时，打印异常 日志，释放客户端资源
 	@Override
 	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-		logger.warning("发生异常 : " + cause.getMessage());
+		System.out.println(cause.getMessage());
         ctx.close();
 	}
 }

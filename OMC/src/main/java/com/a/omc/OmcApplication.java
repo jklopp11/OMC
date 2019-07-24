@@ -21,7 +21,7 @@ public class OmcApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		OMCServer echoServer = new OMCServer();
-        echoServer.start(7777);
+        echoServer.start(8960);
 	}
 
 }
