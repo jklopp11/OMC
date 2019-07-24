@@ -10,13 +10,17 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.handler.codec.serialization.ClassResolvers;
 import io.netty.handler.codec.serialization.ObjectDecoder;
 import io.netty.handler.codec.serialization.ObjectEncoder;
+
 @Component
 public class OMCInitializer extends ChannelInitializer<Channel> {
+
+	@Autowired
+	private OMCServerHandler omcServerHandler;
 
 	@Override
 	protected void initChannel(Channel sc) throws Exception {
 		sc.pipeline().addLast(new ObjectEncoder());
 		sc.pipeline().addLast(new ObjectDecoder(Integer.MAX_VALUE, ClassResolvers.cacheDisabled(null)));
-		sc.pipeline().addLast(new OMCServerHandler());
+		sc.pipeline().addLast(omcServerHandler);
 	}
 }

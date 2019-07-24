@@ -25,6 +25,9 @@ import io.netty.util.concurrent.GenericFutureListener;
 @Component
 public class OMCServer {
 	
+	@Autowired
+	private OMCInitializer omcInitializer;
+	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private EventLoopGroup bossGroup = new NioEventLoopGroup();
@@ -43,7 +46,7 @@ public class OMCServer {
 			.option(ChannelOption.SO_BACKLOG, 1024)
 			.childOption(ChannelOption.SO_KEEPALIVE, true)
 			.childOption(ChannelOption.TCP_NODELAY, true)
-					.childHandler(new OMCInitializer());
+					.childHandler(omcInitializer);
 			// 服务器启动辅助类配置完成后，调用 bind 方法绑定监听端口，调用 sync 方法同步等待绑定操作完成
 			ChannelFuture f = b.bind(port).sync().addListener(new GenericFutureListener<Future<? super Void>>() {
 
